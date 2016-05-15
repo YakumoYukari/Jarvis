@@ -1,6 +1,4 @@
-﻿using Jarvis.Commands;
-
-namespace Jarvis.Interfaces
+﻿namespace Jarvis.Interfaces
 {
     public interface ICommandInitializer
     {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Jarvis.Interfaces;
+﻿using Jarvis.Interfaces;
 
 namespace Jarvis.Commands
 {
@@ -18,6 +13,6 @@ namespace Jarvis.Commands
             this.SpokenCommand = SpokenCommand;
         }
 
-        public abstract string Execute(params string[] args);
+        public abstract string Execute(string args);
     }
 }

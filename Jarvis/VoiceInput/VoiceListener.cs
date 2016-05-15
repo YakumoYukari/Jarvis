@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Speech.Recognition;
-using Jarvis.Interfaces;
+using Jarvis.Logging;
 
 namespace Jarvis.VoiceInput
 {
@@ -21,7 +21,7 @@ namespace Jarvis.VoiceInput
         {
             if (_Recengine == null) _Recengine = new SpeechRecognitionEngine();
 
-            var ConstructedGrammar = _Interpreter.GetGrammar();
+            Grammar ConstructedGrammar = _Interpreter.GetGrammar();
 
             _Recengine.LoadGrammar(ConstructedGrammar);
 
@@ -32,6 +32,7 @@ namespace Jarvis.VoiceInput
         private void OnSpeechRecognized(object Sender, SpeechRecognizedEventArgs e)
         {
             string FoundText = e.Result.Text;
+
             _Interpreter.Interpret(FoundText);
         }
 

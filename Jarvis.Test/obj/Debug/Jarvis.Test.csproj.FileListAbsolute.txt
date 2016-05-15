@@ -1,0 +1,8 @@
+C:\Users\Lukez_000\Documents\Visual Studio 2015\Projects\Jarvis\Jarvis.Test\bin\Debug\Jarvis.Test.exe.config
+C:\Users\Lukez_000\Documents\Visual Studio 2015\Projects\Jarvis\Jarvis.Test\bin\Debug\Jarvis.Test.exe
+C:\Users\Lukez_000\Documents\Visual Studio 2015\Projects\Jarvis\Jarvis.Test\bin\Debug\Jarvis.Test.pdb
+C:\Users\Lukez_000\Documents\Visual Studio 2015\Projects\Jarvis\Jarvis.Test\bin\Debug\Jarvis.dll
+C:\Users\Lukez_000\Documents\Visual Studio 2015\Projects\Jarvis\Jarvis.Test\bin\Debug\Jarvis.pdb
+C:\Users\Lukez_000\Documents\Visual Studio 2015\Projects\Jarvis\Jarvis.Test\obj\Debug\Jarvis.Test.csprojResolveAssemblyReference.cache
+C:\Users\Lukez_000\Documents\Visual Studio 2015\Projects\Jarvis\Jarvis.Test\obj\Debug\Jarvis.Test.exe
+C:\Users\Lukez_000\Documents\Visual Studio 2015\Projects\Jarvis\Jarvis.Test\obj\Debug\Jarvis.Test.pdb

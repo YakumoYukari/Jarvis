@@ -44,21 +44,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandRegistration.cs" />
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\Functionality\Definitions.cs" />
+    <Compile Include="Commands\Functionality\CommandDefinitions.cs" />
     <Compile Include="Commands\Types\CodeCommand.cs" />
     <Compile Include="Commands\Types\ExecuteProgramCommand.cs" />
-    <Compile Include="Core\CommandRegistration.cs" />
-    <Compile Include="Core\Jarvis.cs" />
+    <Compile Include="Grammars\BranchingGrammarConstructor.cs" />
     <Compile Include="Grammars\DictationGrammarConstructor.cs" />
     <Compile Include="Interfaces\ICommand.cs" />
     <Compile Include="Interfaces\ICommandInitializer.cs" />
     <Compile Include="Interfaces\ICommandInterpreter.cs" />
     <Compile Include="Interfaces\ICommandRepository.cs" />
     <Compile Include="Interfaces\IGrammarConstructor.cs" />
+    <Compile Include="Interfaces\ILogWriter.cs" />
+    <Compile Include="Interfaces\IRobot.cs" />
     <Compile Include="Interfaces\IVoice.cs" />
     <Compile Include="Interfaces\IVoiceCommand.cs" />
+    <Compile Include="Jarvis.cs" />
+    <Compile Include="Logging\LogConsoleWriter.cs" />
+    <Compile Include="Logging\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\CommandTextCompiler.cs" />
     <Compile Include="Utils\StringMatcher.cs" />
     <Compile Include="Utils\StringMerger.cs" />
     <Compile Include="VoiceInput\VoiceCommand.cs" />

@@ -15,7 +15,7 @@ namespace Jarvis.VoiceInput
             return _Command;
         }
 
-        public string Execute(params string[] args)
+        public string Execute(string args)
         {
             return "";
         }

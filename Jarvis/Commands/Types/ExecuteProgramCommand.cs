@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using Jarvis.Interfaces;
 
 namespace Jarvis.Commands.Types
 {
@@ -12,7 +11,7 @@ namespace Jarvis.Commands.Types
             _Filepath = ProgramFilePath;
         }
 
-        public override string Execute(params string[] Args)
+        public override string Execute(string Args)
         {
             if (File.Exists(_Filepath))
                 System.Diagnostics.Process.Start(_Filepath);

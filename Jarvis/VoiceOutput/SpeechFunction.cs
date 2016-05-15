@@ -1,33 +1,40 @@
 ﻿using System;
 using System.Speech.Synthesis;
 using Jarvis.Interfaces;
+using Jarvis.Logging;
 
 namespace Jarvis.VoiceOutput
 {
     public class SpeechFunction : IVoice, IDisposable
     {
-        private readonly SpeechSynthesizer _Syn;
+        private readonly SpeechSynthesizer _Synthesizer;
 
         public SpeechFunction()
         {
-            _Syn = new SpeechSynthesizer();
-            _Syn.SetOutputToDefaultAudioDevice();
+            _Synthesizer = new SpeechSynthesizer();
+            _Synthesizer.SetOutputToDefaultAudioDevice();
+        }
+
+        public SpeechSynthesizer GetSynthesizer()
+        {
+            return _Synthesizer;
         }
 
         public void Speak(string Text)
         {
-            _Syn.SpeakAsync(Text);
+            _Synthesizer.SpeakAsync(Text);
+            _Synthesizer.Resume();
         }
 
         public void Squelch()
         {
-            _Syn.SpeakAsyncCancelAll();
+            _Synthesizer.SpeakAsyncCancelAll();
         }
 
         public void Dispose()
         {
             Squelch();
-            _Syn.Dispose();
+            _Synthesizer.Dispose();
         }
     }
 }
