@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JarvisRobot
+﻿namespace Jarvis.Interfaces
 {
     public interface ICommand
     {
-        string Execute(params string[] args);
+        string Execute(params string[] Args);
     }
 }

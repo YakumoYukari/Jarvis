@@ -1,38 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Jarvis.Interfaces;
 
-namespace JarvisRobot
+namespace Jarvis.VoiceInput
 {
     public class VoiceCommandMapper : ICommandMapper
     {
-        private Dictionary<string, ICommand> Commands;
+        private readonly Dictionary<string, ICommand> _Commands;
         public VoiceCommandMapper()
         {
-            Commands = new Dictionary<string, ICommand>();
+            _Commands = new Dictionary<string, ICommand>();
         }
 
         public bool Map(IVoiceCommand VoiceCommand, ICommand Command)
         {
-            if (!Commands.ContainsKey(VoiceCommand.GetText()))
-            {
-                Commands.Add(VoiceCommand.GetText(), Command);
-                return true;
-            }
-            return false;
+            if (_Commands.ContainsKey(VoiceCommand.GetText())) return false;
+
+            _Commands.Add(VoiceCommand.GetText(), Command);
+            return true;
         }
 
         public bool Unmap(IVoiceCommand VoiceCommand)
         {
             string text = VoiceCommand.GetText();
-            if (Commands.ContainsKey(text))
-            {
-                Commands.Remove(text);
-                return true;
-            }
-            return false;
+            if (!_Commands.ContainsKey(text)) return false;
+
+            _Commands.Remove(text);
+            return true;
         }
     }
 }

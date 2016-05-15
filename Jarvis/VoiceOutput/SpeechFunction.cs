@@ -1,36 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Speech.Synthesis;
+using Jarvis.Interfaces;
 
-namespace JarvisRobot.VoiceOutput
+namespace Jarvis.VoiceOutput
 {
     public class SpeechFunction : IVoice, IDisposable
     {
-        private readonly SpeechSynthesizer _syn;
+        private readonly SpeechSynthesizer _Syn;
 
         public SpeechFunction()
         {
-            _syn = new SpeechSynthesizer();
-            _syn.SetOutputToDefaultAudioDevice();
+            _Syn = new SpeechSynthesizer();
+            _Syn.SetOutputToDefaultAudioDevice();
         }
 
-        public void Speak(string text)
+        public void Speak(string Text)
         {
-            _syn.SpeakAsync(text);
+            _Syn.SpeakAsync(Text);
         }
 
         public void Squelch()
         {
-            _syn.SpeakAsyncCancelAll();
+            _Syn.SpeakAsyncCancelAll();
         }
 
         public void Dispose()
         {
             Squelch();
-            _syn.Dispose();
+            _Syn.Dispose();
         }
     }
 }

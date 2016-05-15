@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
-namespace JarvisRobot.Utils
+namespace Jarvis.Utils
 {
     public static class StringMerger
     {
-        public static string MergeArray(params string[] args)
+        public static string MergeArray(params string[] Args)
         {
             StringBuilder b = new StringBuilder();
-            foreach (string s in args)
+            foreach (string s in Args)
             {
                 b.Append(s);
             }

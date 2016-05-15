@@ -1,44 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Jarvis.Interfaces;
 
-namespace JarvisRobot
+namespace Jarvis.Commands
 {
     public class CommandRepository
     {
-        private readonly Dictionary<string, ICommand> CommandList;
+        private readonly Dictionary<string, ICommand> _CommandList;
 
         public CommandRepository(Dictionary<string, ICommand> Commands)
         {
-            CommandList = Commands;
+            _CommandList = Commands;
         }
 
         public bool AddCommand(string UniqueName, ICommand Command)
         {
-            if (!CommandList.ContainsKey(UniqueName))
-            {
-                CommandList.Add(UniqueName, Command);
-                return true;
-            }
-            return false;
+            if (_CommandList.ContainsKey(UniqueName)) return false;
+
+            _CommandList.Add(UniqueName, Command);
+            return true;
         }
 
         public bool HasCommand(string UniqueName)
         {
-            return CommandList.ContainsKey(UniqueName);
+            return _CommandList.ContainsKey(UniqueName);
         }
 
         public ICommand GetCommand(string UniqueName)
         {
-            if (HasCommand(UniqueName)) return CommandList[UniqueName];
-            return null;
+            return HasCommand(UniqueName) ? _CommandList[UniqueName] : null;
         }
 
         public List<string> GetCommands()
         {
-            return CommandList.Keys.ToList<string>();
+            return _CommandList.Keys.ToList();
         }
     }
 }

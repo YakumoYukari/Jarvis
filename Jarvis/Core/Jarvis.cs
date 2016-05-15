@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Jarvis.Interfaces;
+using Jarvis.VoiceOutput;
 
-using JarvisRobot.VoiceOutput;
-using JarvisRobot.Commands;
-using JarvisRobot.Utils;
-
-namespace JarvisRobot
+namespace Jarvis.Core
 {
     public class Jarvis
     {
-        private IVoice Voice;
+        private IVoice _Voice;
         
         public Jarvis()
         {
-            Voice = new SpeechFunction();
+            _Voice = new SpeechFunction();
         }
 
         public void Run()

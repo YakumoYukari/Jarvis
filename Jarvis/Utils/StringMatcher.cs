@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace JarvisRobot.Utils
+namespace Jarvis.Utils
 {
     public static class StringMatcher
     {
         public static bool MatchesWithWildcard(string First, string Second, string Wildcard = "*", string Delimiter = " ")
         {
-            string[] SplitFirst = First.Split(new string[] { Delimiter }, StringSplitOptions.None);
-            string[] SplitSecond = Second.Split(new string[] { Delimiter }, StringSplitOptions.None);
+            var splitFirst = First.Split(new[] { Delimiter }, StringSplitOptions.None);
+            var splitSecond = Second.Split(new[] { Delimiter }, StringSplitOptions.None);
 
-            if (SplitFirst.Length != SplitSecond.Length) return false;
+            if (splitFirst.Length != splitSecond.Length) return false;
 
-            for (int i = 0; i < SplitFirst.Length; i++)
-                if (SplitFirst[i] != SplitSecond[i] && (SplitFirst[i] != Wildcard && SplitSecond[i] != Wildcard))
-                    return false;
-
-            return true;
+            return !splitFirst.Where((t, i) => t != splitSecond[i] && t != Wildcard && splitSecond[i] != Wildcard).Any();
         }
     }
 }

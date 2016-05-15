@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JarvisRobot
+﻿namespace Jarvis.VoiceInput
 {
     public class VoiceCommand
     {
-        private readonly string _command;
+        private readonly string _Command;
         public VoiceCommand(string Speech)
         {
-            _command = Speech;
+            _Command = Speech;
         }
 
         public string GetText()
         {
-            return _command;
+            return _Command;
         }
     }
 }

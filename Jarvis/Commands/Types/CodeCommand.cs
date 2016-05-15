@@ -1,25 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Jarvis.Interfaces;
 
-namespace JarvisRobot.Commands
+namespace Jarvis.Commands.Types
 {
     public class CodeCommand : ICommand
     {
-        private Func<string[], string> Callback;
+        private readonly Func<string[], string> _Callback;
+
         public CodeCommand(Func<string[], string> Callback)
         {
-            this.Callback = Callback;
+            _Callback = Callback;
         }
 
-        public string Execute(params string[] args)
+        public string Execute(params string[] Args)
         {
-            if (Callback != null)
-                return Callback(args);
-            return "";
+            return _Callback != null ? _Callback(Args) : "";
         }
-
     }
 }

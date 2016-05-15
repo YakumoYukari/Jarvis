@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.IO;
+using Jarvis.Interfaces;
 
-namespace JarvisRobot.Commands.Implementations
+namespace Jarvis.Commands.Types
 {
-    class ExecuteProgramCommand : ICommand
+    internal class ExecuteProgramCommand : ICommand
     {
-        private readonly string _filepath;
+        private readonly string _Filepath;
 
         public ExecuteProgramCommand(string ProgramFilePath)
         {
-            _filepath = ProgramFilePath;
+            _Filepath = ProgramFilePath;
         }
 
-        public string Execute(params string[] args)
+        public string Execute(params string[] Args)
         {
-            if (File.Exists(_filepath))
-                System.Diagnostics.Process.Start(_filepath);
+            if (File.Exists(_Filepath))
+                System.Diagnostics.Process.Start(_Filepath);
             return "";
         }
     }

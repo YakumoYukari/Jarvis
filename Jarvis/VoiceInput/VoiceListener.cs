@@ -1,58 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Speech;
 using System.Speech.Recognition;
+using Jarvis.Interfaces;
 
-namespace JarvisRobot
+namespace Jarvis.VoiceInput
 {
     public class VoiceListener : IDisposable
     {
-        private SpeechRecognitionEngine _recengine = null;
-        private Choices _choices = null;
-        private GrammarBuilder _grammarbuilder = null;
-        private Grammar _grammar = null;
+        private SpeechRecognitionEngine _Recengine;
+        private Choices _Choices;
+        private GrammarBuilder _Grammarbuilder;
+        private Grammar _Grammar;
 
-        private bool IsUpdated = false;
+        private bool _IsInitialized;
+        private ICommandRepository _Commands;
 
-        public bool IsInitialized { get; private set; }
         public bool IsListening { get; private set; }
-
-        private ICommandRepository _commands;
 
         public VoiceListener(ICommandRepository CommandRepository)
         {
-            _commands = CommandRepository;
+            _Commands = CommandRepository;
         }
 
         private void BuildGrammar()
         {
-            if (IsUpdated) return;
+            if (_Recengine == null) _Recengine = new SpeechRecognitionEngine();
 
-            if (_recengine == null) _recengine = new SpeechRecognitionEngine();
+            _Choices = new Choices();
 
-            _choices = new Choices();
+            _Grammarbuilder = new GrammarBuilder(_Choices);
+            _Grammar = new Grammar(_Grammarbuilder);
 
-            _grammarbuilder = new GrammarBuilder(_choices);
-            _grammar = new Grammar(_grammarbuilder);
+            _Recengine.LoadGrammar(_Grammar);
 
-            _recengine.LoadGrammar(_grammar);
+            if (_IsInitialized) return;
 
-            if (!IsInitialized)
-            {
-                _recengine.SpeechRecognized += OnSpeechRecognized;
-                _recengine.SetInputToDefaultAudioDevice();
-                IsInitialized = true;
-            }
-
-            IsUpdated = true;
+            _Recengine.SpeechRecognized += OnSpeechRecognized;
+            _Recengine.SetInputToDefaultAudioDevice();
+            _IsInitialized = true;
         }
 
-        private void OnSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        private void OnSpeechRecognized(object Sender, SpeechRecognizedEventArgs E)
         {
-            string FoundText = e.Result.Text;
+            string foundText = E.Result.Text;
+
+            //Todo: actually implement the command call
         }
 
         public void StartListening()
@@ -61,7 +52,7 @@ namespace JarvisRobot
 
             BuildGrammar();
 
-            _recengine.RecognizeAsync(RecognizeMode.Multiple);
+            _Recengine.RecognizeAsync(RecognizeMode.Multiple);
             IsListening = true;
         }
 
@@ -69,14 +60,14 @@ namespace JarvisRobot
         {
             if (!IsListening) return;
 
-            _recengine.RecognizeAsyncCancel();
+            _Recengine.RecognizeAsyncCancel();
             IsListening = false;
         }
 
         public void Dispose()
         {
-            _recengine.RecognizeAsyncCancel();
-            _recengine.Dispose();
+            _Recengine.RecognizeAsyncCancel();
+            _Recengine.Dispose();
         }
     }
 }
