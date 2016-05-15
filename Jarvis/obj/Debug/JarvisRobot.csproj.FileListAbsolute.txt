@@ -1,0 +1,6 @@
+c:\users\lucas\documents\visual studio 2013\Projects\Jarvis\Jarvis\bin\Debug\Jarvis.dll
+c:\users\lucas\documents\visual studio 2013\Projects\Jarvis\Jarvis\bin\Debug\Jarvis.pdb
+c:\users\lucas\documents\visual studio 2013\Projects\Jarvis\Jarvis\bin\Debug\Jarvis.dll.CodeAnalysisLog.xml
+c:\users\lucas\documents\visual studio 2013\Projects\Jarvis\Jarvis\bin\Debug\Jarvis.dll.lastcodeanalysissucceeded
+c:\users\lucas\documents\visual studio 2013\Projects\Jarvis\Jarvis\obj\Debug\Jarvis.dll
+c:\users\lucas\documents\visual studio 2013\Projects\Jarvis\Jarvis\obj\Debug\Jarvis.pdb
