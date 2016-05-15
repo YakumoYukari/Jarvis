@@ -1,8 +1,15 @@
-﻿namespace Jarvis.Interfaces
+﻿using System.Collections.Generic;
+using Jarvis.Commands;
+
+namespace Jarvis.Interfaces
 {
     public interface ICommandRepository
     {
-        bool HasCommand(string UniqueName);
-        ICommand GetCommand(string UniqueName);
+        bool AddCommand(Command Command);
+        bool HasCommand(string Identifier);
+        Command GetCommand(string Identifier);
+        List<Command> GetCommands();
+        bool RemoveCommand(string Identifier);
+        void Clear();
     }
 }

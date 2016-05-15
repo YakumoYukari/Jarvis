@@ -2,9 +2,9 @@
 
 namespace Jarvis.Interfaces
 {
-    interface ICommandInitializer
+    public interface ICommandInitializer
     {
         bool ReadCommands();
-        CommandRepository GetCommands();
+        ICommandRepository GetCommands();
     }
 }

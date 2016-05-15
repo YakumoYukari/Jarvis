@@ -7,50 +7,37 @@ namespace Jarvis.VoiceInput
     public class VoiceListener : IDisposable
     {
         private SpeechRecognitionEngine _Recengine;
-        private Choices _Choices;
-        private GrammarBuilder _Grammarbuilder;
-        private Grammar _Grammar;
-
-        private bool _IsInitialized;
-        private ICommandRepository _Commands;
+        private readonly VoiceCommandInterpreter _Interpreter;
 
         public bool IsListening { get; private set; }
 
-        public VoiceListener(ICommandRepository CommandRepository)
+        public VoiceListener(VoiceCommandInterpreter Interpreter)
         {
-            _Commands = CommandRepository;
+            _Interpreter = Interpreter;
+            BuildGrammar();
         }
 
         private void BuildGrammar()
         {
             if (_Recengine == null) _Recengine = new SpeechRecognitionEngine();
 
-            _Choices = new Choices();
+            var ConstructedGrammar = _Interpreter.GetGrammar();
 
-            _Grammarbuilder = new GrammarBuilder(_Choices);
-            _Grammar = new Grammar(_Grammarbuilder);
-
-            _Recengine.LoadGrammar(_Grammar);
-
-            if (_IsInitialized) return;
+            _Recengine.LoadGrammar(ConstructedGrammar);
 
             _Recengine.SpeechRecognized += OnSpeechRecognized;
             _Recengine.SetInputToDefaultAudioDevice();
-            _IsInitialized = true;
         }
 
-        private void OnSpeechRecognized(object Sender, SpeechRecognizedEventArgs E)
+        private void OnSpeechRecognized(object Sender, SpeechRecognizedEventArgs e)
         {
-            string foundText = E.Result.Text;
-
-            //Todo: actually implement the command call
+            string FoundText = e.Result.Text;
+            _Interpreter.Interpret(FoundText);
         }
 
         public void StartListening()
         {
             if (IsListening) return;
-
-            BuildGrammar();
 
             _Recengine.RecognizeAsync(RecognizeMode.Multiple);
             IsListening = true;

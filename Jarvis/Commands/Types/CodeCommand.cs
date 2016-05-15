@@ -3,16 +3,16 @@ using Jarvis.Interfaces;
 
 namespace Jarvis.Commands.Types
 {
-    public class CodeCommand : ICommand
+    public class CodeCommand : Command
     {
         private readonly Func<string[], string> _Callback;
 
-        public CodeCommand(Func<string[], string> Callback)
+        public CodeCommand(string Name, string SpokenCommand, Func<string[], string> Callback) : base(Name, SpokenCommand)
         {
             _Callback = Callback;
         }
 
-        public string Execute(params string[] Args)
+        public override string Execute(params string[] Args)
         {
             return _Callback != null ? _Callback(Args) : "";
         }
