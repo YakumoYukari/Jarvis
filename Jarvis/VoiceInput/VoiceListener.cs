@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Speech.Recognition;
-using Jarvis.Logging;
 
 namespace Jarvis.VoiceInput
 {
@@ -21,9 +20,10 @@ namespace Jarvis.VoiceInput
         {
             if (_Recengine == null) _Recengine = new SpeechRecognitionEngine();
 
-            Grammar ConstructedGrammar = _Interpreter.GetGrammar();
+            Grammar[] ConstructedGrammars = _Interpreter.GetGrammars();
 
-            _Recengine.LoadGrammar(ConstructedGrammar);
+            foreach (Grammar g in ConstructedGrammars)
+                _Recengine.LoadGrammar(g);
 
             _Recengine.SpeechRecognized += OnSpeechRecognized;
             _Recengine.SetInputToDefaultAudioDevice();

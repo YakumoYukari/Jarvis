@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Speech.Synthesis;
 using Jarvis.Interfaces;
-using Jarvis.Logging;
 
 namespace Jarvis.VoiceOutput
 {

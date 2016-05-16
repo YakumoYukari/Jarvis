@@ -1,4 +1,7 @@
-﻿namespace Jarvis.Test
+﻿using Jarvis.Grammars;
+using Jarvis.VoiceInput;
+
+namespace Jarvis.Test
 {
     class Program
     {
@@ -6,7 +9,11 @@
         {
             Logging.Logger.Instance.EnableDebug = true;
             
-            JarvisBot Robot = new JarvisBot();
+            var OurVoiceCommands = new VoiceCommandRepository();
+            CommandRegistration.RegisterCommands(OurVoiceCommands);
+
+            JarvisBot Robot = new JarvisBot(OurVoiceCommands, new BranchingGrammarConstructor());
+
             Robot.StartListening();
 
             while (Robot.Running)

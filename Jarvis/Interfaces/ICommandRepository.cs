@@ -6,6 +6,7 @@ namespace Jarvis.Interfaces
     public interface ICommandRepository
     {
         bool AddCommand(Command Command);
+        void AddCommands(ICommandRepository Commands);
         bool HasCommand(string Identifier);
         Command GetCommand(string Identifier);
         List<Command> GetCommands();

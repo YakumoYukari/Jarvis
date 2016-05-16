@@ -46,8 +46,8 @@
   <ItemGroup>
     <Compile Include="CommandRegistration.cs" />
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\Functionality\CommandDefinitions.cs" />
     <Compile Include="Commands\Types\CodeCommand.cs" />
+    <Compile Include="Commands\Types\DirectiveCommand.cs" />
     <Compile Include="Commands\Types\ExecuteProgramCommand.cs" />
     <Compile Include="Grammars\BranchingGrammarConstructor.cs" />
     <Compile Include="Grammars\DictationGrammarConstructor.cs" />
@@ -65,8 +65,7 @@
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\CommandTextCompiler.cs" />
-    <Compile Include="Utils\StringMatcher.cs" />
-    <Compile Include="Utils\StringMerger.cs" />
+    <Compile Include="Utils\StringTools.cs" />
     <Compile Include="VoiceInput\VoiceCommand.cs" />
     <Compile Include="VoiceInput\VoiceCommandInterpreter.cs" />
     <Compile Include="VoiceInput\VoiceCommandRepository.cs" />

@@ -22,6 +22,12 @@ namespace Jarvis.VoiceInput
             return true;
         }
 
+        public void AddCommands(ICommandRepository FromRepository)
+        {
+            foreach (Command cmd in FromRepository.GetCommands())
+                AddCommand(cmd);
+        }
+
         public bool HasCommand(string UniqueName)
         {
             return _CommandList.Any(c => c.Name == UniqueName);

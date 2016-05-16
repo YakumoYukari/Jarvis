@@ -4,7 +4,7 @@ namespace Jarvis.Interfaces
 {
     public interface ICommandInterpreter
     {
-        Grammar GetGrammar();
+        Grammar[] GetGrammars();
         void Interpret(string Input);
     }
 }

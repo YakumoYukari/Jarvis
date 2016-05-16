@@ -5,6 +5,6 @@ namespace Jarvis.Interfaces
     public interface IGrammarConstructor
     {
         void SetRepository(ICommandRepository CommandRepository);
-        Grammar ConstructGrammar();
+        Grammar[] ConstructGrammars();
     }
 }

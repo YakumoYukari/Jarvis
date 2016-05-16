@@ -13,7 +13,7 @@ namespace Jarvis.VoiceInput
         private readonly VoiceCommandRepository _Repository;
         private readonly IGrammarConstructor _GrammarConstructor;
 
-        public Action<string> InterpretCallback;
+        public Action<string, string> InterpretCallback;
 
         public VoiceCommandInterpreter(VoiceCommandRepository Repository, IGrammarConstructor GrammarConstructor)
         {
@@ -22,16 +22,21 @@ namespace Jarvis.VoiceInput
             _GrammarConstructor.SetRepository(Repository);
         }
 
-        public Grammar GetGrammar()
+        public void AddCommands(VoiceCommandRepository AdditionalCommands)
         {
-            return _GrammarConstructor.ConstructGrammar();
+            _Repository.AddCommands(AdditionalCommands);
+        }
+
+        public Grammar[] GetGrammars()
+        {
+            return _GrammarConstructor.ConstructGrammars();
         }
 
         public void Interpret(string Input)
         {
             var FoundCommand = _Repository.GetCommands();
 
-            var Matches = FoundCommand.Where(Entry => StringMatcher.MatchesWithWildcard(Entry.SpokenCommand, Input));
+            var Matches = FoundCommand.Where(Entry => StringTools.MatchesWithWildcard(Entry.SpokenCommand, Input));
             var Found = Matches as Command[] ?? Matches.ToArray();
 
             Command Chosen = Found.FirstOrDefault();
@@ -44,7 +49,7 @@ namespace Jarvis.VoiceInput
 
             string Result = Chosen.Execute(Input);
 
-            InterpretCallback?.Invoke(Result);
+            InterpretCallback?.Invoke(Chosen.Name, Result);
         }
     }
 }

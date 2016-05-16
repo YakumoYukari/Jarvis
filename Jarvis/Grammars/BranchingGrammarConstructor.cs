@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Speech.Recognition;
 using Jarvis.Commands;
 using Jarvis.Interfaces;
@@ -13,18 +14,38 @@ namespace Jarvis.Grammars
         {
             _Repository = CommandRepository;
         }
-        public Grammar ConstructGrammar()
+        public Grammar[] ConstructGrammars()
         {
-            var Builder = new GrammarBuilder();
+            var Commands = _Repository.GetCommands();
+            var Builders = new List<GrammarBuilder>(Commands.Count);
 
-            List<Command> Commands = _Repository.GetCommands();
-
-            foreach (Command Entry in Commands)
+            foreach (Command CurrentCommand in Commands)
             {
-                //Todo: Figure out fastest way to do this
+                var Tokens = CurrentCommand.SpokenCommand.Split(' ');
+                var Builder = new GrammarBuilder();
+
+                for(int j = 0; j < Tokens.Length; j++)
+                {
+                    bool MatchesWildcard = Tokens[j] == "*";
+
+                    if (MatchesWildcard && j == Tokens.Length - 1)
+                    {
+                        Builder.AppendDictation();
+                    }
+                    else if (MatchesWildcard)
+                    {
+                        Builder.AppendWildcard();
+                    }
+                    else
+                    {
+                        Builder.Append(Tokens[j]);
+                    }
+                }
+
+                Builders.Add(Builder);
             }
 
-            return new Grammar(Builder);
+            return Builders.Select(b => new Grammar(b)).ToArray();
         }
     }
 }

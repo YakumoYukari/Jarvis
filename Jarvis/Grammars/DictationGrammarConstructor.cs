@@ -5,15 +5,13 @@ namespace Jarvis.Grammars
 {
     public class DictationGrammarConstructor : IGrammarConstructor
     {
-        private ICommandRepository _Repository;
-
         public void SetRepository(ICommandRepository CommandRepository)
         {
-            _Repository = CommandRepository;
+
         }
-        public Grammar ConstructGrammar()
+        public Grammar[] ConstructGrammars()
         {
-            return new DictationGrammar();
+            return new Grammar[] {new DictationGrammar()};
         }
     }
 }
